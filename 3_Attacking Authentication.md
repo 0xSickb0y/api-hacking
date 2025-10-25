@@ -2,7 +2,7 @@
 
 Authentication is a fundamental security mechanism in APIs that verifies __who__ a user or system is before granting access. It ensures that only legitimate users can interact with the system by validating credentials such as passwords, tokens, or biometrics. Weak or improper authentication can lead to __account takeovers, unauthorized access, and credential stuffing attacks__ — making it a critical aspect of API security.
 
-![alt text](assets/image-13.png)
+<img width="2400" height="1350" alt="image-13" src="https://github.com/user-attachments/assets/e7ea2d75-3690-413a-b92f-b85b2c61e163" />
 
 ---
 
@@ -42,7 +42,7 @@ __Key Issues to Consider:__
 
 The lab starts with a simple login page where users are asked to enter their credentials (username and password).
 
-![alt text](assets/image-26.png)
+<img width="1914" height="698" alt="image-26" src="https://github.com/user-attachments/assets/29d8a5ee-d95b-4f65-bf8e-dc46a38f3c37" />
 
 ---
 
@@ -54,7 +54,7 @@ Using the `-fs` option in **ffuf**, with a filter size of 30, we can differentia
 
 This reveals two valid usernames: `admin` and `jeremy`.
 
-![alt text](assets/image-27.png)
+<img width="1611" height="600" alt="image-27" src="https://github.com/user-attachments/assets/d0651f36-07c5-4f7d-a1bc-32c095cf1fe9" />
 
 ---
 
@@ -64,11 +64,11 @@ Once `admin` is confirmed as a valid username, the next step is brute-forcing th
 
 Now, the system returns an HTTP status code 200 for successful logins, confirming the correct password.
 
-![alt text](assets/image-28.png)
+<img width="1652" height="578" alt="image-28" src="https://github.com/user-attachments/assets/c0c70c7b-a2ce-4fcb-a57d-1dc353353eed" />
 
 With the valid credentials (`admin` / `ramirez`), access is granted. After logging in, a flag is obtained, confirming the exploit was successful.
 
-![alt text](assets/image-29.png)
+<img width="499" height="337" alt="image-29" src="https://github.com/user-attachments/assets/c84c0e37-a29b-4666-8cfd-3cc96503c696" />
 
 # Attacking Tokens
 
@@ -105,13 +105,13 @@ Priority: u=0
 {"email":"admin","password":"ramirez"}
 ```
 
-![alt text](assets/image-30.png)
+<img width="1917" height="813" alt="image-30" src="https://github.com/user-attachments/assets/a72ee787-02a2-465b-b984-3a327f9e805f" />
 
 ### Token Analysis with Sequencer
 
 To assess randomness, the token is analyzed using Burp Suite's Sequencer. A large sample size is necessary for statistical reliability.
 
-![alt text](assets/image-31.png)
+<img width="1915" height="784" alt="image-31" src="https://github.com/user-attachments/assets/66b59ce6-0db2-4b7e-b3e3-f76b3a054381" />
 
 Results:
 
@@ -126,7 +126,7 @@ The entropy chart represents the estimated randomness of token values at differe
 
 If the observed patterns fall below the significance threshold, it indicates a lack of randomness, suggesting that token generation follows a predictable structure. A lower significance level demands stronger statistical evidence to reject randomness, reducing the likelihood of false positives but increasing the risk of overlooking weak randomness.
 
-![alt text](assets/image-32.png)
+<img width="648" height="429" alt="image-32" src="https://github.com/user-attachments/assets/bad4890b-95cf-4f19-89ba-e04e23ee21a0" />
 
 ---
 
@@ -134,13 +134,13 @@ If the observed patterns fall below the significance threshold, it indicates a l
 
 This chart visualizes the probability that each character position in the token follows a random distribution. If certain positions show low randomness, it suggests deterministic token generation, making it easier for attackers to predict or reconstruct tokens. A weak entropy distribution increases the risk of token forgery and replay attacks.
 
-![alt text](assets/image-33.png)
+<img width="667" height="454" alt="image-33" src="https://github.com/user-attachments/assets/f139d12f-ec5d-4f0e-8931-74d713b1bf3d" />
 
 Decoding the Base64 token reveals a structured format: `username - timestamp - three-character suffix`
 
 This predictable pattern allows attackers to reconstruct or forge tokens.
 
-![alt text](assets/image-34.png)
+<img width="552" height="333" alt="image-34" src="https://github.com/user-attachments/assets/7d4b94bd-b92c-4281-9d5b-77c83bafb39d" />
 
 ---
 
@@ -179,7 +179,7 @@ for char_0 in chars:
 
 ```
 
-![alt text](assets/image-35.png)
+<img width="801" height="233" alt="image-35" src="https://github.com/user-attachments/assets/5f1c8318-a365-4aa0-938f-eb00b6add343" />
 
 ## JSON Web Tokens
 
@@ -204,7 +204,7 @@ python3 jwt_tool.py <token>
 
 This will output detailed information about the token, including the header, payload, and signature, making it easier to understand and potentially modify the contents or identify weaknesses in the token structure.
 
-![alt text](assets/image-40.png)
+<img width="1420" height="675" alt="image-40" src="https://github.com/user-attachments/assets/b8cfe8b1-c986-4ab7-bfac-c007fa747870" />
 
 If you're working in Burp Suite, the __jwt-editor__ plugin provides a user-friendly interface for analyzing and manipulating JWTs directly within the Burp Suite environment, offering features like real-time decoding, editing, and signing.
 
@@ -248,7 +248,7 @@ curl -i http://localhost/dashboard --header "Authorization: Bearer eyJhbGciOiJIU
 
 The use of JWTs for both authentication and authorization was validated, demonstrating a typical flow where the server relies on the client to provide the token for subsequent requests.
 
-![alt text](assets/image-36.png)
+<img width="1705" height="486" alt="image-36" src="https://github.com/user-attachments/assets/f44370c4-ce54-4ae5-856b-d9e098b717c5" />
 
 ---
 
@@ -260,7 +260,7 @@ To demonstrate how to crack the JWT secret, we can use Hashcat to brute force th
 ./hashcat.bin -a 0 -m 16500 hashes/jwt.token ../wordlists/rockyou.txt
 ```
 
-![alt text](assets/image-37.png)
+<img width="1086" height="558" alt="image-37" src="https://github.com/user-attachments/assets/60cdacd2-d60d-495d-b969-56e8edf47945" />
 
 ---
 
@@ -268,10 +268,10 @@ To demonstrate how to crack the JWT secret, we can use Hashcat to brute force th
 
 With the secret in hand, the next step was to forge a valid admin token. Using [jwt.io](https://jwt.io), the payload and header were crafted manually with the admin user’s details.
 
-![alt text](assets/image-38.png)
+<img width="1213" height="712" alt="image-38" src="https://github.com/user-attachments/assets/24deb32b-26ae-490a-b097-db81dacc560c" />
 
 This newly forged token was then used to authenticate against the app, providing access to the dashboard as an admin. The visual evidence shows the application responding with a successful authentication.
 
-![alt text](assets/image-39.png)
+<img width="1708" height="379" alt="image-39" src="https://github.com/user-attachments/assets/ea8098fa-6c19-4a06-a6b5-879906068f43" />
 
 The critical point here is that using a weak, low-entropy secret like `ucyxu6` makes it extremely vulnerable to offline cracking. Once the secret is known, it becomes trivial to forge valid tokens for any user, bypassing authentication altogether.

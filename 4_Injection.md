@@ -2,7 +2,7 @@
 
 SQL injection (SQLi) vulnerabilities in APIs arise when user input is improperly handled in database queries, allowing attackers to execute arbitrary SQL statements. As NoSQL databases gain popularity, so do their injection vulnerabilities, especially with the flexible nature of query systems that don't strictly enforce a schema.
 
-![alt text](assets/image-46.png)
+<img width="790" height="380" alt="image-46" src="https://github.com/user-attachments/assets/04153c77-ef97-4344-b700-19baf6df4600" />
 
 SQL injection is a class of vulnerabilities that can result in unauthorized data access, manipulation, or even Remote Code Execution (RCE) depending on the privileges of the database user and the database's configuration.
 
@@ -48,7 +48,7 @@ Fuzzing is a technique where random or specially crafted data is submitted to AP
 
 Enumerate website functionality first (e.g., actions like creating users, sending messages) and look for places where input is reflected or used in database queries. Start by testing common SQL payloads to see if the application is vulnerable to SQL injection.
 
-![alt text](assets/image-41.png)
+<img width="813" height="519" alt="image-41" src="https://github.com/user-attachments/assets/289ccc32-c5ab-4f36-b9ff-292476e59294" />
 
 ```http
 GET /v1/001.php?roast=2 HTTP/1.1
@@ -68,7 +68,7 @@ Host: 172.19.0.3
 
 We can then analyze the responses to identify any abnormal behavior (e.g., error messages, different status codes) that might indicate a SQLi vulnerability.
 
-![alt text](assets/image-43.png)
+<img width="1695" height="790" alt="image-43" src="https://github.com/user-attachments/assets/939ad180-bfd1-48bb-8110-b20758555070" />
 
 ## FFuF
 
@@ -80,13 +80,13 @@ ffuf -u http://172.19.0.3//v1/001.php\?roast=FUZZ -w /opt/SecLists/Fuzzing/SQLi/
 
 FFuF works by analyzing response status codes, content size, and duration, making it an effective tool for finding parameters vulnerable to SQL injection.
 
-![alt text](assets/image-44.png)
+<img width="1104" height="618" alt="image-44" src="https://github.com/user-attachments/assets/97e35681-a818-4ca0-b0a9-254c125ff383" />
 
 ## SQLmap
 
 SQLmap is an automated tool designed to detect and exploit SQL injection vulnerabilities.
 
-![alt text](assets/image-45.png)
+<img width="1714" height="865" alt="image-45" src="https://github.com/user-attachments/assets/3b771584-d8d0-4945-ab52-91de944ab805" />
 
 Running SQLmap against the `roast` parameter revealed multiple SQL injection techniques, each exploiting a different aspect of the database:
 
@@ -190,7 +190,7 @@ The lab demonstrates authentication bypass on the `/v1/002.php` endpoint that ha
 
 Testing the endpoint with regular credentials reveals an error message that exposes the SQL query structure:
 
-![alt text](assets/image-47.png)
+<img width="1536" height="448" alt="image-47" src="https://github.com/user-attachments/assets/160a9130-e95a-48f4-a5d5-932c92f6f308" />
 
 Initial testing with `'admin` as username breaks the query syntax and generates a MySQL error, indicating SQL injection potential:
 
@@ -207,8 +207,8 @@ curl http://172.19.0.2/v1/002.php -H "Content-Type: application/json" \
 
 The injection succeeds, resulting in admin access:
 
-![alt text](assets/image-48.png)
-![alt text](assets/image-49.png)
+<img width="1383" height="278" alt="image-48" src="https://github.com/user-attachments/assets/01b5303f-c88b-41d4-b7f9-b409ce2802c8" />
+<img width="1391" height="828" alt="image-49" src="https://github.com/user-attachments/assets/6b8017e7-199e-4eb9-9d7e-3e2f3670783a" />
 
 # NoSQL Injection
 
@@ -218,7 +218,7 @@ MongoDB is particularly common in API implementations due to its JSON-like docum
 
 For fuzzing NoSQL injection, specialized wordlists like [SecLists/Fuzzing/Databases/NoSQL.txt](https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/Databases/NoSQL.txt) contain MongoDB-specific operators and syntax:
 
-![alt text](assets/image-50.png)
+<img width="861" height="437" alt="image-50" src="https://github.com/user-attachments/assets/52c5180c-4999-4ea5-90a9-d069e3616684" />
 
 This following payload attempts a NoSQL injection attack using MongoDB's query operator `$ne` (not equal). Here's how it works:
 
@@ -230,13 +230,13 @@ This following payload attempts a NoSQL injection attack using MongoDB's query o
 
 Since most passwords won't equal "fake_pass", this bypasses authentication by making the password check always true. The successful login message "Success! You logged in as admin" confirms the attack worked.
 
-![alt text](assets/image-51.png)
+<img width="1537" height="828" alt="image-51" src="https://github.com/user-attachments/assets/d9658b24-becd-4285-b697-f8f60285a91c" />
 
 ## Lab 
 
 The crAPI application's coupon validation functionality demonstrates a NoSQL injection vulnerability.
 
-![alt text](assets/image-52.png)
+<img width="1905" height="699" alt="image-52" src="https://github.com/user-attachments/assets/f3fe5603-2288-4626-9f36-b79c25ce18b9" />
 
 Initial testing of the `/community/api/v2/coupon/validate-coupon` endpoint with a basic coupon code:
 
@@ -268,7 +268,7 @@ Content-Length: 3
 
 Fuzzing the `coupon_code` parameter reveals MongoDB query operator errors:
 
-![alt text](assets/image-53.png)
+<img width="1676" height="396" alt="image-53" src="https://github.com/user-attachments/assets/906ac389-62be-413c-92ce-87e4a75b4e57" />
 
 Testing with the MongoDB comparison operator `$gt` successfully bypasses validation:
 
@@ -281,7 +281,7 @@ curl -X POST 'http://localhost:8888/community/api/v2/coupon/validate-coupon' \
 
 The injection reveals a valid coupon:
 
-![alt text](assets/image-54.png)
+<img width="1531" height="393" alt="image-54" src="https://github.com/user-attachments/assets/7c01bc3d-7001-4db2-9951-ab8e197ba42c" />
 
 ```json
 {

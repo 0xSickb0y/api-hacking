@@ -8,7 +8,7 @@ As penetration testers, our objectives typically revolve around demonstrating ta
 - Privileged access acquisition
 - Remote code execution
 
-![alt text](assets/image-71.png)
+<img width="768" height="220" alt="image-71" src="https://github.com/user-attachments/assets/13c5141c-52d3-4b2f-a16e-806229df2665" />
 
 While discovering a single critical vulnerability that achieves these objectives is ideal, reality often presents us with multiple smaller vulnerabilities that must be chained together to demonstrate meaningful impact. This approach more accurately represents how sophisticated threat actors operate in real-world scenarios.
 
@@ -28,7 +28,7 @@ The crAPI application contains an excellent example of vulnerability chaining, w
 2. Server-Side Request Forgery (SSRF)
 3. Command injection
 
-![alt text](assets/image-72.png)
+<img width="1231" height="404" alt="image-72" src="https://github.com/user-attachments/assets/9b95dbc5-f5d9-4316-9c57-a022c64a5041" />
 
 __Step 1: Identifying Command Injection Potential__
 
@@ -69,7 +69,7 @@ From our previous testing, we've identified that the application is vulnerable t
 }
 ```
 
-![alt text](assets/image-73.png)
+<img width="1542" height="599" alt="image-73" src="https://github.com/user-attachments/assets/c72d15e9-ff9a-40dc-8e55-1ff67979670f" />
 
 We've successfully injected a command to create a file in the `/tmp` directory, but we need a way to trigger the command execution.
 
@@ -125,7 +125,7 @@ Anyhow, if you host your own instance of crAPI, you can simply change the
 `block_shell_injections` flag in the config file to allow real shell injections. 
 ```
 
-![alt text](assets/image-74.png)
+<img width="1906" height="496" alt="image-74" src="https://github.com/user-attachments/assets/7b8f12cf-0710-47d1-9808-39e747ff3141" />
 
 This successful attack chain demonstrates how three moderate-severity vulnerabilities can be combined to achieve remote code execution:
 

@@ -4,7 +4,7 @@ Excessive Data Exposure refers to a vulnerability where APIs unintentionally rev
 
 A key factor in this problem is the reliance on the client to perform data filtering, which is inherently insecure. Without proper controls, APIs may expose unnecessary or sensitive data, increasing the attack surface.
 
-![alt text](assets/image-65.png)
+<img width="790" height="297" alt="image-65" src="https://github.com/user-attachments/assets/1276e045-a639-48e3-a7a2-a926c136bc51" />
 
 A previous example of this comes from the crAPI application, where we identified a vulnerability involving vehicle IDs that could be exploited through excessive data exposure.
 
@@ -81,4 +81,5 @@ Now that we have this information, it can be used to interact with other API end
 
 Another example of excessive data exposure can be seen when making a GET request to the `/community/api/v2/community/posts/{{post_id}}` endpoint, where similar sensitive information about the users is revealed.
 
-![alt text](assets/image-66.png)
+<img width="1486" height="594" alt="image-66" src="https://github.com/user-attachments/assets/78fb5026-d8ac-4260-831d-cd46dfed9b98" />
+

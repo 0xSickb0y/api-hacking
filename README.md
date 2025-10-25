@@ -2,7 +2,7 @@
 
 #### An application programming interface is a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software. A document or standard that describes how to build such a connection or interface is called an API specification. A computer system that meets this standard is said to implement or expose an API. 
 
-![alt text](assets/image-0.png)
+<img width="396" height="338" alt="image-0" src="https://github.com/user-attachments/assets/80862cd4-7d8c-458c-97e2-e1cedd8f5ab8" />
 
 # API protocols and architectures
 

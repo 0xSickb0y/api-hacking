@@ -2,7 +2,7 @@
 
 Mass assignment vulnerabilities occur when APIs automatically bind client-provided data to internal objects or variables without proper filtering. Modern frameworks often provide features that automatically map incoming request parameters to code variables - while this enables rapid development, it can also introduce security risks if not properly controlled.
 
-![alt text](assets/image-60.png)
+<img width="1024" height="533" alt="image-60" src="https://github.com/user-attachments/assets/89c9ee60-c73d-422c-bea4-d8f26a9a9bbb" />
 
 __Threat agents/Attack vectors__: Exploitation usually requires an understanding of the business logic, objects' relations, and the API structure. Exploitation of mass assignment is easier in APIs, since by design they expose the underlying implementation of the application along with the properties’ names.
 
@@ -106,14 +106,14 @@ The application provides two main functionalities:
 1. User registration (`/register`)
 2. User list reset (`/clear`)
 
-![alt text](assets/image-61.png)
+<img width="1360" height="809" alt="image-61" src="https://github.com/user-attachments/assets/b1c17968-bdc3-46ca-a0b6-7bcfd9b68dd6" />
 
 The schema follows the format: `username:password:privilege`
 
 To create an admin user, we can exploit the mass assignment vulnerability by including the `privileges` parameter in our request:
 
 Using Postman:
-![alt text](assets/image-62.png)
+<img width="1781" height="397" alt="image-62" src="https://github.com/user-attachments/assets/2f516ccf-418f-4d95-b5eb-a097e5d39f0f" />
 
 Using cURL:
 ```bash
@@ -134,7 +134,7 @@ jane_doe:Password1!:user
 fake_user:fake_pass:admin
 ```
 
-![alt text](assets/image-63.png)
+<img width="1365" height="171" alt="image-63" src="https://github.com/user-attachments/assets/e6070572-dddd-4c17-a288-cfa220a5d506" />
 
 # crAPI
 
@@ -212,7 +212,7 @@ curl --location 'http://localhost:8888/workshop/api/shop/products' \
 ```
 
 This results in crediting the user's account with $35 million:
-![alt text](assets/image-64.png)
+<img width="1235" height="605" alt="image-64" src="https://github.com/user-attachments/assets/bd3266d2-4d3b-45a0-b72d-42ab77c7cd70" />
 
 ### Prevention
 

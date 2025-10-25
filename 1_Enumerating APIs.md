@@ -9,7 +9,6 @@ Attackers often target misconfigured APIs, excessive data exposure, and improper
 One of the most effective ways to enumerate API endpoints is by analyzing the application's source code and monitoring network requests. This process helps uncover hidden functionality and undocumented endpoints that may be vulnerable.
 
 
-
 #### Logging Requests with Burp Suite  
 
 Start by navigating through the application while __intercepting and logging requests__ in Burp Suite. By analyzing the __HTTP history__, you can identify API calls made by the frontend.
@@ -21,7 +20,7 @@ Start by navigating through the application while __intercepting and logging req
 
 Example of Burp Suite capturing API traffic:
 
-![Burp HTTP History](assets/image-10.png)
+<img width="950" height="488" alt="image-10" src="https://github.com/user-attachments/assets/01460bfd-3930-48ff-9026-f413c8e521fe" />
 
 ---
 
@@ -35,7 +34,7 @@ Another method is __analyzing JavaScript files__ used by the frontend. These fil
 
 Example of JavaScript containing API paths:
 
-![alt text](assets/image-11.png)
+<img width="747" height="466" alt="image-11" src="https://github.com/user-attachments/assets/137a4f76-a356-40dd-bdb6-c997a9ebcafa" />
 
 ---
 
@@ -49,7 +48,7 @@ After formatting obfuscated JavaScript files, additional API details may be expo
 
 Example of formatted JavaScript exposing API information:
 
-![alt text](assets/image-12.png)
+<img width="585" height="516" alt="image-12" src="https://github.com/user-attachments/assets/df700d24-2d4a-4848-b580-53bb2b16395b" />
 
 
 # Fuzzing
@@ -60,7 +59,7 @@ Analyze HTTP response codes, headers, and body content to identify potential vul
 
 Implement parameter fuzzing to detect potential injection points, IDOR (Insecure Direct Object References), or access control flaws. Assess how the API handles malformed requests, unexpected data types, and large payloads. Evaluate rate limits and throttling mechanisms to determine if abuse is possible. Combine fuzzing with authentication testing to uncover privilege escalation or unauthorized access risks.
 
-![alt text](assets/image-5.png)
+<img width="670" height="272" alt="image-5" src="https://github.com/user-attachments/assets/03e97768-5568-43fd-9911-7eef3fe63764" />
 
 ---
 
@@ -79,7 +78,7 @@ wfuzz -c -z file,/path/to/wordlist --sc 200 'http://0.0.0.0/path/to/endpoint?sho
 
 Example output may reveal sensitive parameters or endpoints returning valid responses.
 
-![wfuzz output](assets/image-9.png)
+<img width="618" height="317" alt="image-9" src="https://github.com/user-attachments/assets/37abf585-3f9b-4324-98d5-d0736e7fcaf6" />
 
 ---
 
@@ -87,7 +86,7 @@ Example output may reveal sensitive parameters or endpoints returning valid resp
 
 Using Burp Suite, we discover that the `/api/` endpoint contains `v1/` and `v2/` versions:
 
-![BurpSuite API Enumeration](assets/image-6.png)
+<img width="945" height="242" alt="image-6" src="https://github.com/user-attachments/assets/0c9a2fdb-2438-42e6-aff2-1078cae86743" />
 
 This information suggests versioning, meaning older endpoints may still be accessible or vulnerable. Fuzzing different versions might reveal deprecated endpoints with security weaknesses.
 
@@ -99,7 +98,7 @@ NameError: name 'filename' is not defined // Werkzeug Debugger
 
 This response can indicate improper input validation, potential file handling issues, or debug mode being enabled, which can be exploited further.
 
-![Werkzeug Error](assets/image-7.png)
+<img width="565" height="443" alt="image-7" src="https://github.com/user-attachments/assets/98460823-2e46-4373-afaf-81d9cdb7238c" />
 
 To check for possible file disclosure vulnerabilities, fuzz API parameters with common Linux filenames:
 
@@ -107,7 +106,7 @@ To check for possible file disclosure vulnerabilities, fuzz API parameters with 
 GET /api/v1/resources/books?show=FUZZ
 ```
 
-![Linux Filename Fuzzing](assets/image-8.png)
+<img width="560" height="455" alt="image-8" src="https://github.com/user-attachments/assets/ce3f0618-1cf8-41f0-8449-f5bce9b706c9" />
 
 - Test with filenames like `.bash_history`, `/etc/passwd`, or application-specific files.  
 - Look for different response codes or errors indicating file inclusion or path traversal issues.  

@@ -2,7 +2,7 @@
 
 Server-Side Request Forgery is a vulnerability that allows attackers to induce the server-side application to make requests to an unintended location. By manipulating how the server retrieves data from other systems, attackers can bypass access controls and potentially access internal resources.
 
-![SSRF Basic Concept](assets/image-67.png)
+<img width="784" height="236" alt="image-67" src="https://github.com/user-attachments/assets/f6110972-fc78-4076-96df-a9c9271c595e" />
 
 - __Threat Agents/Attack Vectors__: Exploitation requires the attacker to find an API endpoint that accesses a URI that's provided by the client. Basic SSRF (where the response is returned to the attacker) is generally easier to exploit than Blind SSRF, which provides no feedback on whether the attack was successful.
 
@@ -23,8 +23,7 @@ This lab features a stock check functionality that fetches data from an internal
 
 - Source: [PortSwigger Web Security Academy](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)
 
-![Lab Interface](assets/image-68.png)
-
+<img width="919" height="444" alt="image-68" src="https://github.com/user-attachments/assets/37542175-9d66-40a3-bd8a-00c00ec0061b" />
 
 The e-commerce site displays product listings with a "Check stock" button for each item. This button triggers an API call to verify inventory availability across three store locations.
 
@@ -98,7 +97,7 @@ With this knowledge, we craft our final SSRF payload to delete the target user:
 stockApi=http://127.0.0.1/admin/delete?username=carlos&storeId=3
 ```
 
-![Lab Completion](assets/image-69.png)
+<img width="1560" height="423" alt="image-69" src="https://github.com/user-attachments/assets/115e53f6-377d-4dfe-a7af-b40022a6fd1a" />
 
 After sending this request, we receive a 401 Unauthorized response, but the lab is marked as solved. 
 
@@ -135,7 +134,7 @@ By tampering with the `mechanic_api` value, we can trigger requests to:
 - Internal container addresses (e.g., `http://172.21.0.9:9001/file.txt`)
 - External websites
 
-![SSRF Verification in crAPI](assets/image-70.png)
+<img width="1908" height="565" alt="image-70" src="https://github.com/user-attachments/assets/ce41ae28-c908-4832-8ff5-88b5c0d7009d" />
 
 This confirms the SSRF vulnerability, allowing attackers to:
 1. Probe internal network services
